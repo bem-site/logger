@@ -33,7 +33,7 @@ var options = {
         useDate: false
     },
     logger = require('bem-site-logger').setOptions(options).createLogger(module);
-```.
+```
 
 Where available options are:
 
