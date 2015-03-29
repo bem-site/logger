@@ -2,6 +2,8 @@
 Simple logger module for bem-site projects.
 It is simple wrapper around node console methods.
 
+[![NPM](https://nodei.co/npm/bem-site-logger.png)](https://nodei.co/npm/bem-site-logger/)
+
 [![Coveralls branch](https://img.shields.io/coveralls/bem-site/logger/master.svg)](https://coveralls.io/r/bem-site/logger?branch=master)
 [![Travis](https://img.shields.io/travis/bem-site/logger.svg)](https://travis-ci.org/bem-site/logger)
 [![David](https://img.shields.io/david/bem-site/logger.svg)](https://david-dm.org/bem-site/logger)
