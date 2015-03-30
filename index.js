@@ -59,7 +59,7 @@ module.exports = Logger = inherit({
             this._prefixString = function (level) {
                 var prefix = '';
                 if (this.__self.options.useDate) {
-                    prefix = util.format('[%s] ', moment().format('YYYY-MM-DD HH:mm:SS'));
+                    prefix = util.format('[%s] ', moment().format('YYYY-MM-DD HH:mm:ss'));
                 }
                 prefix += util.format('%s ', level.toUpperCase());
                 prefix = this._styleString(prefix, this._STYLES[level]);
@@ -119,18 +119,7 @@ module.exports = Logger = inherit({
             return this._log('error', arguments);
         }
     }, {
-
-        DEFAULT_MODE: process.env['NODE_ENV'] || 'development',
-        DEFAULT_LEVEL: 'info',
-        DEFAULT_COLOR: true,
-        DEFAULT_USE_DATE: true,
-
-        options: {
-            mode: this.DEFAULT_MODE,
-            level: this.DEFAULT_LEVEL,
-            color: this.DEFAULT_COLOR,
-            useDate: this.DEFAULT_USE_DATE
-        },
+        options: null,
 
         /**
          * Clears loggers hash. Needs for tests
@@ -149,11 +138,11 @@ module.exports = Logger = inherit({
             if (!options) {
                 return this;
             }
-
-            options.mode && (this.options.mode = options.mode);
-            options.level && (this.options.level = options.level);
-            options.color === false && (this.options.color =  options.color);
-            options.useDate  === false && (this.options.useDate = options.useDate);
+            this.options = this.options || {};
+            this.options.mode = options.mode || process.env['NODE_ENV'] || 'development';
+            this.options.level = options.level || 'info';
+            this.options.color =  options.color !== false;
+            this.options.useDate = options.useDate !== false;
             return this;
         },
 
@@ -162,12 +151,12 @@ module.exports = Logger = inherit({
          * @returns {Logger}
          */
         resetOptions: function () {
-            this.options = {
-                mode: this.DEFAULT_MODE,
-                level: this.DEFAULT_LEVEL,
-                color: this.DEFAULT_COLOR,
-                useDate: this.DEFAULT_USE_DATE
-            };
+            this.options = Object.create({
+                mode: process.env['NODE_ENV'] || 'development',
+                level: 'info',
+                color: true,
+                useDate: true
+            });
             return this;
         },
 
@@ -177,6 +166,10 @@ module.exports = Logger = inherit({
          * @returns {*}
          */
         createLogger: function (m) {
+            if (!this.options) {
+                this.resetOptions();
+            }
+
             m = m || module;
             var fName = m['filename'];
             loggers[fName] = loggers[fName] || new Logger(m);
