@@ -135,13 +135,11 @@ module.exports = Logger = inherit({
          * @returns {Logger}
          */
         setOptions: function (options) {
-            if (!options) {
-                return this;
-            }
+            options = options || {},
             this.options = this.options || {};
             this.options.mode = options.mode || process.env['NODE_ENV'] || 'development';
             this.options.level = options.level || 'info';
-            this.options.color =  options.color !== false;
+            this.options.color = options.color !== false;
             this.options.useDate = options.useDate !== false;
             return this;
         },
@@ -151,13 +149,7 @@ module.exports = Logger = inherit({
          * @returns {Logger}
          */
         resetOptions: function () {
-            this.options = Object.create({
-                mode: process.env['NODE_ENV'] || 'development',
-                level: 'info',
-                color: true,
-                useDate: true
-            });
-            return this;
+            return this.setOptions(null);
         },
 
         /**
