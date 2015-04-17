@@ -1,6 +1,6 @@
 {
   "name": "bem-site-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": {
     "type": "git",
     "url": "git://github.com/bem-site/logger.git"
@@ -11,7 +11,8 @@
   ],
   "contributors": [
     "Andrey Kuznetsov <andrey.kuznetsov48@yandex.ua> (http://github.com/tormozz48)",
-    "Nikolay Ilchenko <tavria@yandex-team.ru> (http://github.com/tavriaforever)"
+    "Nikolay Ilchenko <tavria@yandex-team.ru> (http://github.com/tavriaforever)",
+    "Gela Konstantinova <gela-d@yandex-team.ru> (http://github.com/gela-d)"
   ],
   "keywords": [
     "logger",
@@ -31,9 +32,9 @@
   "devDependencies": {
     "mocha": "~2.2.x",
     "mocha-lcov-reporter": "0.0.x",
-    "should": "~5.2.x",
+    "should": "^6.x",
     "istanbul": "^0.3.x",
-    "jshint": "~2.6.x",
+    "jshint": "^2.x",
     "jscs": "^1.11.x"
   },
   "scripts": {

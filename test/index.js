@@ -150,26 +150,32 @@ describe('logger', function () {
             should.notDeepEqual(l._logger.debug, console.log);
             should.notDeepEqual(l._logger.info, console.log);
 
-            should.deepEqual(l._logger.warn, console.warn);
-            should.deepEqual(l._logger.error, console.error);
-        });
-
-        describe('should return false', function () {
-            it('for verbose', function () {
-                l.verbose('test message').should.equal(false);
-            });
-
-            it('for debug', function () {
-                l.debug('test message').should.equal(false);
-            });
-
-            it('for info', function () {
-                l.info('test message').should.equal(false);
-            });
+            should.notDeepEqual(l._logger.warn, console.warn);
+            should.notDeepEqual(l._logger.error, console.error);
         });
 
         after(function () {
             Logger.resetOptions();
+        });
+    });
+
+    describe('chain calls', function () {
+        var l;
+
+        before(function () {
+            Logger.setOptions({
+                level: 'verbose'
+            });
+            l = Logger.createLogger(module);
+        });
+
+        it('should be chain calls', function () {
+            l
+                .verbose('verbose message')
+                .debug('debug message')
+                .info('info message')
+                .warn('warn message')
+                .error('error message');
         });
     });
 });

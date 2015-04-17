@@ -9,6 +9,8 @@ It is simple wrapper around node console methods.
 [![David](https://img.shields.io/david/bem-site/logger.svg)](https://david-dm.org/bem-site/logger)
 [![David](https://img.shields.io/david/dev/bem-site/logger.svg)](https://david-dm.org/bem-site/logger#info=devDependencies)
 
+![GitHub Logo](./logo.gif)
+
 ## Usage
 
 Add logger dependency to your project:
@@ -81,6 +83,15 @@ Finally it calls itself `console.warn()` method with generated message string.
 * `error` - creates log message with 'error' verbosity level.
 Finally it calls itself `console.error()` method with generated message string.
 
+Also instance methods can be called in chain style, for example:
+
+ ```
+ logger
+    .info('hello world info')
+    .debug('hello world debug')
+    .warn('hello world warn')
+ ```
+
 ## Testing
 
 Run tests:
@@ -97,6 +108,11 @@ Run codestyle verification (jshint and jscs)
 ```
 npm run codestyle
 ```
+
+Special thanks to:
+
+* Nikolay Ilchenko (http://github.com/tavriaforever)
+* Konstantinova Gela (http://github.com/gela-d)
 
 Maintainer @tormozz48
 Please send your questions and proposals to: tormozz48@gmail.com

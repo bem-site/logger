@@ -33,8 +33,8 @@ module.exports = Logger = inherit({
                     verbose: this._stub,
                     debug: this._stub,
                     info: this._stub,
-                    warn: console.warn,
-                    error: console.error
+                    warn: this._stub,
+                    error: this._stub
                 };
             } else {
                 var _this = this;
@@ -72,16 +72,17 @@ module.exports = Logger = inherit({
          * Logs given message args with given log level
          * @param {String} level - log level
          * @param {Argument} args - logger arguments
-         * @returns {*}
+         * @returns {Logger}
          * @private
          */
         _log: function (level, args) {
-            return this._logger[level](this._prefixString(level) + util.format.apply(this, args));
+            this._logger[level](this._prefixString(level) + util.format.apply(this, args));
+            return this;
         },
 
         /**
          * Alias for logging verbose messages
-         * @returns {*}
+         * @returns {exports}
          */
         verbose: function () {
             return this._log('verbose', arguments);
@@ -89,7 +90,7 @@ module.exports = Logger = inherit({
 
         /**
          * Alias for logging debug messages
-         * @returns {*}
+         * @returns {exports}
          */
         debug: function () {
             return this._log('debug', arguments);
@@ -97,7 +98,7 @@ module.exports = Logger = inherit({
 
         /**
          * Alias for logging info messages
-         * @returns {*}
+         * @returns {exports}
          */
         info: function () {
             return this._log('info', arguments);
@@ -105,7 +106,7 @@ module.exports = Logger = inherit({
 
         /**
          * Alias for logging warn messages
-         * @returns {*}
+         * @returns {exports}
          */
         warn: function () {
             return this._log('warn', arguments);
@@ -113,7 +114,7 @@ module.exports = Logger = inherit({
 
         /**
          * Alias for logging error messages
-         * @returns {*}
+         * @returns {exports}
          */
         error: function () {
             return this._log('error', arguments);
