@@ -9,7 +9,7 @@ It is simple wrapper around node console methods.
 [![David](https://img.shields.io/david/bem-site/logger.svg)](https://david-dm.org/bem-site/logger)
 [![David](https://img.shields.io/david/dev/bem-site/logger.svg)](https://david-dm.org/bem-site/logger#info=devDependencies)
 
-![GitHub Logo](./logo.gif)
+![GitHub Logo](./logo.png)
 
 ## Usage
 
